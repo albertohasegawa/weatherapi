@@ -18,8 +18,8 @@ public class WeatherController {
 	private WeatherApiClient client;
 	
 	@RequestMapping(path="buscar5")
-	public List<ResultWeatherDTO> listarCinco(@RequestParam("cidade") String cidade) {
-		List<ResultWeatherDTO> climas = client.fetchEvents(cidade);
+	public List<ResultWeatherDTO> listarCinco(@RequestParam("cidade") String cidade, @RequestParam("hora") Integer hora) {
+		List<ResultWeatherDTO> climas = client.fetchEvents(cidade, hora);
 		return climas;
 		
 	}

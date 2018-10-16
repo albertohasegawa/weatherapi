@@ -1,12 +1,5 @@
 package br.com.cast.weatherapi.dto;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-import br.com.cast.weatherapi.client.WeatherApiClient;
-
 public class ResultWeatherDTO {
 
 	private Double temp_min;
