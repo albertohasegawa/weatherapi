@@ -54,7 +54,7 @@ public class WeatherApiClient {
 		for (WeatherDataDTO wdtos : resultados.getList()) {
 
 			ResultWeatherDTO rwdto = new ResultWeatherDTO();
-			rwdto.setData(wdtos.getData());
+			rwdto.setDataatual((wdtos.getData()));
 			rwdto.setDescricao_main(wdtos.getDescricao()[0].getMain());
 			rwdto.setIcone(wdtos.getDescricao()[0].getIcon());
 			rwdto.setPressao(wdtos.getMain().getPressao());
@@ -62,15 +62,16 @@ public class WeatherApiClient {
 			rwdto.setTemp_min(wdtos.getMain().getTemp_min());
 			rwdto.setUmidade(wdtos.getMain().getUmidade());
 			rwdto.setVelocidade_vento(wdtos.getVento().getVelocidade());
+			rwdto.setCidade(cidade);
 			lista.add(rwdto);
 			
 			
 //			resultados.getList().get(0).getData().substring(beginIndex, endIndex)
 		}
 		for (ResultWeatherDTO result : lista) {
-			if(result.getData().contains(HORA[horario])) 
+			if(result.getDataatual().toString().contains(HORA[horario])) 
 				listafiltrada.add(result);				
-		}
+		} 
 		
 		
 		return listafiltrada;

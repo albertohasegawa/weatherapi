@@ -1,5 +1,8 @@
 package br.com.cast.weatherapi.dto;
 
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class WeatherDataDTO {
@@ -11,7 +14,8 @@ public class WeatherDataDTO {
 	@JsonProperty("wind")
 	private WeatherVentoDTO vento;
 	@JsonProperty("dt_txt")
-	private String data;
+	@JsonFormat(pattern="yyyy-MM-dd hh:mm:ss")
+	private Date data;
 	
 	public WeatherMainDTO getMain() {
 		return main;
@@ -34,11 +38,12 @@ public class WeatherDataDTO {
 	public void setVento(WeatherVentoDTO vento) {
 		this.vento = vento;
 	}
-	public String getData() {
+	public Date getData() {
 		return data;
 	}
-	public void setData(String data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
+
 
 }

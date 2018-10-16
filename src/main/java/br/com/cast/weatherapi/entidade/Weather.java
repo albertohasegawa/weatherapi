@@ -1,8 +1,15 @@
-package br.com.cast.weatherapi.dto;
+package br.com.cast.weatherapi.entidade;
 
 import java.util.Date;
 
-public class ResultWeatherDTO {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(schema="weather", name="dados")
+public class Weather {
 
 	private Double temp_min;
 	private Double temp_max;
@@ -12,8 +19,11 @@ public class ResultWeatherDTO {
 	private String descricao_main;
 	private String icone;
 	private Double velocidade_vento;
+	@Id
+	@Column(name="cidadehora")
 	private String cidadeHora;
 	private String cidade;
+	
 	
 	public Double getTemp_min() {
 		return temp_min;
@@ -39,7 +49,6 @@ public class ResultWeatherDTO {
 	public void setUmidade(Integer umidade) {
 		this.umidade = umidade;
 	}
-
 	public String getDescricao_main() {
 		return descricao_main;
 	}
@@ -78,9 +87,6 @@ public class ResultWeatherDTO {
 	}
 
 
-
-	
-	
 	
 	
 }
