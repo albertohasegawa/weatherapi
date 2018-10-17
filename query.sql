@@ -1,14 +1,15 @@
 ﻿create schema weather;
 create table weather.dados (
-	temp_min varchar(10) not null,
-	temp_max varchar(10)not null,
-	pressao varchar(10) not null,
+	temp_min varchar(100) not null,
+	temp_max varchar(100)not null,
+	pressao varchar(100) not null,
 	umidade int not null,
 	dataatual timestamp not null,
-	descricao_main varchar(20) not null,
-	icone varchar(10) not null,
-	velocidade_vento varchar(10) not null,
+	descricao_main varchar(200) not null,
+	icone varchar(100) not null,
+	velocidade_vento varchar(100) not null,
 	cidadehora varchar(100) not null,
+	cidade varchar(100) not null,
 	constraint pk_weather PRIMARY KEY (cidadehora))
 drop table weather.dados
 
