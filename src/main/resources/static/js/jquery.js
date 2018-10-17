@@ -1,62 +1,19 @@
 $(function() {
 
-	$('.main').on('click', '#btn-salvar', function(event) {
-		var json = {
-			nome: $('#nomePessoa').val(),
-			email: $('#emailPessoa').val(),
-			cpf: $('#cpfPessoa').val(),
-			enderecodto: {
-				cep: $('#cepPessoa').val(),
-				logradouro: $('#logradouroEndereco').val(),
-				numero: $('#numeroEndereco').val(),
-				complemento: $('#complementoEndereco').val(),
-				bairro: $('#bairroEndereco').val(),
-				cidade: $('#cidadeEndereco').val(),
-				uf: $('#ufEndereco').val()
-			}
+	$('.main').on('click', '#btn-buscar', function(event) {
+		var cidade = $('#cidadeEscolhida').val();
+		var hora = $('#horaEscolhida').val();
 			
-		};
-		console.log(JSON.stringify(json));
-		$.ajax({
-			type: "post",
-			url: 'pessoas',
-			contentType: "application/json",
-			data: JSON.stringify(json),
-			success: function(retorno) {
-				alert(retorno + " alterado com sucesso!");
-				$('.main').load('listar.html');
-				listarPessoas();
-			}});
-			event.preventDefault();
-		}); 
-//			//done é chamado depois que voltou do servidor (callback)
-//			.done(function (retorno) { 
-//				alert('mensagem do servidor ' + retorno);
-//				$('.main').load('listar.html');
-//				listarPessoas();
-//
-//			});
+		
+			
+		
+		});
+
+
+
 		
 	
-	$('.main').on('blur', '#cepPessoa', function(event) {
-		
-		$.get('https://viacep.com.br/ws/' + $(this).val() + '/json/', function(data) {
-			if(!("erro" in data)){
-				$('#logradouroEndereco').val(data.logradouro);
-				$('#bairroEndereco').val(data.bairro);
-				$('#cidadeEndereco').val(data.localidade);
-				$('#ufEndereco').val(data.uf);
-			}
-			else {
-				$('#logradouroEndereco').val("");
-				$('#bairroEndereco').val("");
-				$('#cidadeEndereco').val("");
-				$('#ufEndereco').val("");
-				alert("CEP não encontrado")
-			}
-		});
-		event.preventDefault();
-	});
+	
 	$('#btn-cadastrar').click(function() {
 		$('.main').load('cadastrar.html');
 		$('#modoCadastro').html('Cadastro de Pessoa Física');
@@ -70,50 +27,8 @@ $(function() {
 		
 	});
 
-	$('.main').on('click', '.btn-excluir', function(event) {
-		var cpfAtual =  $(this).siblings('.cpfPessoa').html();
-		
-		
-		
-		console.log(cpfAtual);
-		$.ajax({
-			url: 'pessoas/' + cpfAtual,
-			data: cpfAtual,
-			dataType: 'text',
-			method: 'delete',
-			success: function (response) {
-				alert("cpf: " + response + " deletado com sucesso");
-				$('.main').load('listar.html');
-				listarPessoas();
-			}
-		});
-		
-		event.preventDefault();
-	});
-	$('.main').on('click', '.btn-alterar', function(event) {
-		var cpfAtual = $(this).siblings('.cpfPessoa').html();
-		$('.main').load('cadastrar.html');
-		$.get("pessoas/" + cpfAtual, function (data) { 
-			console.log(cpfAtual);
-			console.log(data.nome);
-			console.log(data.enderecodto.cidade);
-			$('#modoCadastro').html('Alterar cadastro de Pessoa Física');
-			$('#nomePessoa').val(data.nome);
-			$('#emailPessoa').val(data.email);
-			$('#cpfPessoa').val(data.cpf).prop('disabled', true);
-			$('#cepPessoa').val(data.enderecodto.cep);
-			$('#numeroEndereco').val(data.enderecodto.numero);
-			$('#complementoEndereco').val(data.enderecodto.complemento);
-			$('#logradouroEndereco').val(data.enderecodto.logradouro);
-			$('#bairroEndereco').val(data.enderecodto.bairro);
-			$('#cidadeEndereco').val(data.enderecodto.cidade);
-			$('#ufEndereco').val(data.enderecodto.uf);
-			},
-			"json"
-		);
-
-		event.preventDefault();
-	});
+	
+	
 	
 });
 
